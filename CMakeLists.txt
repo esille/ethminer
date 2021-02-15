@@ -14,24 +14,24 @@ cable_configure_toolchain(DEFAULT cxx11)
 set(HUNTER_CONFIGURATION_TYPES Release CACHE STRING "Build type of Hunter packages")
 set(HUNTER_JOBS_NUMBER 6 CACHE STRING "Number of parallel builds used by Hunter")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.112.tar.gz"
-    SHA1 "4b894e1d5d203f0cc9a77431dbb1b486ab6f4430"
+    URL "https://github.com/sowson/hunter/archive/v0.23.214-macOS.tar.gz"
+    SHA1 "771b6fdbb9246e27b910e4394ae61bfe834237bd"
     LOCAL
 )
 
 project(ethminer)
 set(PROJECT_VERSION 0.19.0)
 
-cable_set_build_type(DEFAULT Release CONFIGURATION_TYPES Release RelWithDebInfo)
+
 
 option(ETHASHCL "Build with OpenCL mining" ON)
-option(ETHASHCUDA "Build with CUDA mining" ON)
+option(ETHASHCUDA "Build with CUDA mining" OFF)
 option(ETHASHCPU "Build with CPU mining (only for development)" OFF)
 option(ETHDBUS "Build with D-Bus support" OFF)
 option(APICORE "Build with API Server support" ON)
-option(BINKERN "Install AMD binary kernels" ON)
+option(BINKERN "Install AMD binary kernels" OFF)
 option(DEVBUILD "Log developer metrics" OFF)
-option(USE_SYS_OPENCL "Build with system OpenCL" OFF)
+option(USE_SYS_OPENCL "Build with system OpenCL" ON)
 
 # propagates CMake configuration options to the compiler
 function(configureProject)
