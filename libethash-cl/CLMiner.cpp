@@ -514,14 +514,9 @@ void CLMiner::enumDevices(std::map<string, DeviceDescriptor>& _DevicesCollection
                      (platformType == ClPlatformTypeEnum::Amd ||
                          platformType == ClPlatformTypeEnum::Clover))
             {
-                cl_char t[24];
-                if (clGetDeviceInfo(device.get(), 0x4037, sizeof(t), &t, NULL) == CL_SUCCESS)
-                {
-                    std::ostringstream s;
-                    s << setfill('0') << setw(2) << hex << (unsigned int)(t[21]) << ":" << setw(2)
-                      << (unsigned int)(t[22]) << "." << (unsigned int)(t[23]);
-                    uniqueId = s.str();
-                }
+                std::ostringstream s;
+                s << "GPU:" << setfill('0') << setw(2) << hex << (pIdx + dIdx);
+                uniqueId = s.str();
             }
             else if (clDeviceType == DeviceTypeEnum::Gpu && platformType == ClPlatformTypeEnum::Intel)
             {
